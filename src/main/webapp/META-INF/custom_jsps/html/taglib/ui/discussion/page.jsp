@@ -25,6 +25,7 @@
 <%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+<%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
 <%@ page import="com.liferay.portlet.blogs.model.BlogsEntry" %>
 <%@ page import="com.liferay.portal.model.Group" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %>
@@ -94,7 +95,7 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 				var dsq = document.createElement('script');
 				dsq.type = 'text/javascript';
 				dsq.async = true;
-				dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+				dsq.src = '<%= HttpUtil.getProtocol(request) %>://' + disqus_shortname + '.disqus.com/embed.js';
 				(document.getElementsByTagName('head')[0] || document
 						.getElementsByTagName('body')[0]).appendChild(dsq);
 			})();
