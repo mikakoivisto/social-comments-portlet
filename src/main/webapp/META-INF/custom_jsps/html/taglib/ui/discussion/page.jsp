@@ -130,7 +130,6 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 	</div>
 
 	<liferay-util:html-bottom outputKey="taglib_ui_discussion_gplus">
-		<script src="https://apis.google.com/js/plusone.js">
-		</script>
+		<script src="https://apis.google.com/js/plusone.js"></script>
 	</liferay-util:html-bottom>
 </c:if>
