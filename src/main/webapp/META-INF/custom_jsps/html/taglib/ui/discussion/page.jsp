@@ -48,6 +48,9 @@ String livefyreSiteId = typeSettingsProperties.getProperty("social-comments-live
 String livefyreSiteSecret = typeSettingsProperties.getProperty("social-comments-livefyre-site-secret");
 boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-livefyre-enabled"));
 
+boolean gplusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-gplus-enabled"));
+int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-gplus-width", "642"));
+
 String articleId = className.concat(String.valueOf(classPK));
 String articleUrl = redirect;
 
@@ -113,6 +116,20 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 					sig: "<%= livefyreSig %>"
 				}
 			});
+		</script>
+	</liferay-util:html-bottom>
+</c:if>
+
+<c:if test="<%= gplusEnabled %>">
+	<div class="g-comments"
+    	data-href="<%= articleUrl %>"
+    	data-width="<%= gplusWidth %>"
+    	data-first_party_property="BLOGGER"
+    	data-view_type="FILTERED_POSTMOD">
+	</div>
+
+	<liferay-util:html-bottom outputKey="taglib_ui_discussion_gplus">
+		<script src="https://apis.google.com/js/plusone.js">
 		</script>
 	</liferay-util:html-bottom>
 </c:if>

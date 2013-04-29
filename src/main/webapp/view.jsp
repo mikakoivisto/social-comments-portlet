@@ -37,6 +37,9 @@ String livefyreSiteId = typeSettingsProperties.getProperty("social-comments-live
 String livefyreSiteSecret = typeSettingsProperties.getProperty("social-comments-livefyre-site-secret");
 boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-livefyre-enabled"));
 
+boolean gplusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-gplus-enabled"));
+int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-gplus-width", "642"));
+
 %>
 <portlet:actionURL name="updateConfiguration" var="updateConfigurationURL" />
 
@@ -58,6 +61,14 @@ boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProper
 		<aui:input label="site-id" name="settings--social-comments-livefyre-site-id--" value="<%= livefyreSiteId %>"/>
 
 		<aui:input label="site-secret" name="settings--social-comments-livefyre-site-secret--" value="<%= livefyreSiteSecret %>"/>
+	</aui:fieldset>
+
+	<aui:fieldset label="gplus">
+		<aui:input label="enabled" name="settings--social-comments-gplus-enabled--" type="checkbox" value="<%= String.valueOf(gplusEnabled) %>"/>
+		<aui:input label="width" name="settings--social-comments-gplus-width--" value="<%= gplusWidth %>">
+			<aui:validator name="digits"/>
+		</aui:input>
+		
 	</aui:fieldset>
 
 	<aui:button-row>
