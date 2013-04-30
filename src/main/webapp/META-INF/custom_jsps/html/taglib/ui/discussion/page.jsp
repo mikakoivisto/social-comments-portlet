@@ -123,10 +123,10 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 
 <c:if test="<%= gplusEnabled %>">
 	<div class="g-comments"
-    	data-href="<%= articleUrl %>"
-    	data-width="<%= gplusWidth %>"
-    	data-first_party_property="BLOGGER"
-    	data-view_type="FILTERED_POSTMOD">
+		data-href="<%= articleUrl %>"
+		data-width="<%= gplusWidth %>"
+		data-first_party_property="BLOGGER"
+		data-view_type="FILTERED_POSTMOD">
 	</div>
 
 	<liferay-util:html-bottom outputKey="taglib_ui_discussion_gplus">
