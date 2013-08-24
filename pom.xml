@@ -41,7 +41,7 @@
 			<plugin>
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
-				<version>${liferay.version}</version>
+				<version>${liferay.maven.plugin.version}</version>
 				<configuration>
 					<autoDeployDir>${liferay.auto.deploy.dir}</autoDeployDir>
 					<appServerDeployDir>${liferay.app.server.deploy.dir}</appServerDeployDir>
@@ -135,5 +135,6 @@
 
 	<properties>
 		<liferay.version>6.1.1</liferay.version>
+		<liferay.maven.plugin.version>6.1.2</liferay.maven.plugin.version>
 	</properties>
 </project>
