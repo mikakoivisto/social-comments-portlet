@@ -133,8 +133,15 @@
 		</dependency>
 	</dependencies>
 
+	<repositories>
+		<repository>
+			<id>liferay</id>
+			<url>https://repository.liferay.com/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
 	<properties>
-		<liferay.version>6.1.1</liferay.version>
-		<liferay.maven.plugin.version>6.1.2</liferay.maven.plugin.version>
+		<liferay.version>6.2.0-GA1</liferay.version>
+		<liferay.maven.plugin.version>6.2.0-GA1</liferay.maven.plugin.version>
 	</properties>
 </project>

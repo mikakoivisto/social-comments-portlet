@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2012 Mika Koivisto <mika@javaguru.fi>
+ * Copyright (c) 2013 Mika Koivisto <mika@javaguru.fi>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +20,10 @@ package fi.javaguru.socialcomments.portlet;
 import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
-import com.liferay.portal.kernel.util.WebKeys;
 import com.liferay.portal.model.Group;
 import com.liferay.portal.service.GroupServiceUtil;
-import com.liferay.portal.theme.ThemeDisplay;
+import com.liferay.portal.service.ServiceContext;
+import com.liferay.portal.service.ServiceContextFactory;
 import com.liferay.util.bridges.mvc.MVCPortlet;
 
 import java.io.IOException;
@@ -41,24 +41,26 @@ public class SocialCommentsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		Group scopeGroup = themeDisplay.getScopeGroup();
-
-		if (scopeGroup.isStagingGroup()) {
-			scopeGroup = scopeGroup.getLiveGroup();
-		}
-
-		UnicodeProperties typeSettingsProperties =
-			scopeGroup.getTypeSettingsProperties();
-
-		UnicodeProperties properties = PropertiesParamUtil.getProperties(
-			actionRequest, "settings--");
-
-		typeSettingsProperties.putAll(properties);
 
 		try {
+			ServiceContext serviceContext =
+				ServiceContextFactory.getInstance(actionRequest);
+
+
+			Group scopeGroup = serviceContext.getScopeGroup();
+
+			if (scopeGroup.isStagingGroup()) {
+				scopeGroup = scopeGroup.getLiveGroup();
+			}
+
+			UnicodeProperties typeSettingsProperties =
+				scopeGroup.getTypeSettingsProperties();
+
+			UnicodeProperties properties = PropertiesParamUtil.getProperties(
+				actionRequest, "settings--");
+
+			typeSettingsProperties.putAll(properties);
+
 			GroupServiceUtil.updateGroup(
 				scopeGroup.getGroupId(), scopeGroup.getTypeSettings());
 		}
