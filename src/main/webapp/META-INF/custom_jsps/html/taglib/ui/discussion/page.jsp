@@ -20,15 +20,20 @@
 <%@ include file="/html/taglib/init.jsp" %>
 
 <%@ page import="com.liferay.portal.kernel.util.DigesterUtil" %>
-<%@ page import="com.liferay.portal.kernel.util.StringBundler" %>
-<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
-<%@ page import="com.liferay.portal.util.PortalUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.GetterUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HtmlUtil" %>
 <%@ page import="com.liferay.portal.kernel.util.HttpUtil" %>
-<%@ page import="com.liferay.portlet.blogs.model.BlogsEntry" %>
-<%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.kernel.util.StringBundler" %>
+<%@ page import="com.liferay.portal.kernel.util.StringPool" %>
 <%@ page import="com.liferay.portal.kernel.util.UnicodeProperties" %>
+<%@ page import="com.liferay.portal.model.Group" %>
+<%@ page import="com.liferay.portal.model.Layout" %>
+<%@ page import="com.liferay.portal.service.LayoutLocalServiceUtil" %>
+<%@ page import="com.liferay.portal.util.PortalUtil" %>
+
+<%@ page import="com.liferay.portlet.blogs.model.BlogsEntry" %>
+<%@ page import="com.liferay.portlet.documentlibrary.model.DLFileEntry" %>
+<%@ page import="com.liferay.portlet.wiki.model.WikiPage" %>
 
 <%
 String className = (String)request.getAttribute("liferay-ui:discussion:className");
@@ -57,6 +62,16 @@ String articleUrl = redirect;
 
 if (className.equals(BlogsEntry.class.getName())) {
 	articleUrl = PortalUtil.getPortalURL(request).concat("/c/blogs/find_entry?entryId=").concat(String.valueOf(classPK));
+}
+else if (className.equals(DLFileEntry.class.getName())) {
+	articleUrl = PortalUtil.getPortalURL(request).concat("/c/document_library/find_file_entry?fileEntryId=").concat(String.valueOf(classPK));
+}
+else if (className.equals(Layout.class.getName())) {
+	Layout discussionLayout = LayoutLocalServiceUtil.getLayout(classPK);
+	articleUrl = GetterUtil.getString(PortalUtil.getLayoutFriendlyURL(discussionLayout, themeDisplay));
+}
+else if (className.equals(WikiPage.class.getName())) {
+	articleUrl = PortalUtil.getPortalURL(request).concat("/c/wiki/find_page?pageResourcePrimKey=").concat(String.valueOf(classPK));
 }
 
 StringBundler sb = new StringBundler(4);
