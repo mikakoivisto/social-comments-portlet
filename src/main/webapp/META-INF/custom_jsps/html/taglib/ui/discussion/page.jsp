@@ -144,7 +144,24 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 		data-view_type="FILTERED_POSTMOD">
 	</div>
 
-	<liferay-util:html-bottom outputKey="taglib_ui_discussion_gplus">
-		<script src="https://apis.google.com/js/plusone.js"></script>
+	<liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_plusone">
+		<script type="text/javascript">
+			window.___gcfg = {
+				lang: '<%= locale.getLanguage() %>-<%= locale.getCountry() %>'
+			};
+
+			(function() {
+				var script = document.createElement('script');
+
+				script.async = true;
+				script.type = 'text/javascript';
+
+				script.src = 'https://apis.google.com/js/plusone.js';
+
+				var firstScript = document.getElementsByTagName('script')[0];
+
+				firstScript.parentNode.insertBefore(script, firstScript);
+			})();
+		</script>
 	</liferay-util:html-bottom>
 </c:if>
