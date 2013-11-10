@@ -40,6 +40,11 @@ boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProper
 boolean gplusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-gplus-enabled"));
 int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-gplus-width", "642"));
 
+boolean fbEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-facebook-enabled"));
+String fbColorScheme = GetterUtil.getString(typeSettingsProperties.getProperty("social-comments-facebook-color-scheme"), "light");
+int fbNumPosts = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-numPosts", "10"));
+int fbWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-width", "550"));
+
 %>
 <portlet:actionURL name="updateConfiguration" var="updateConfigurationURL" />
 
@@ -68,9 +73,21 @@ int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("socia
 		<aui:input label="width" name="settings--social-comments-gplus-width--" value="<%= gplusWidth %>">
 			<aui:validator name="digits"/>
 		</aui:input>
-		
 	</aui:fieldset>
 
+	<aui:fieldset label="facebook">
+		<aui:input label="enabled" name="settings--social-comments-facebook-enabled--" type="checkbox" value="<%= String.valueOf(fbEnabled) %>"/>
+		<aui:input label="width" name="settings--social-comments-facebook-width--" value="<%= fbWidth %>">
+			<aui:validator name="digits"/>
+		</aui:input>
+		<aui:input label="number-of-posts" name="settings--social-comments-facebook-numPosts--" value="<%= fbNumPosts %>">
+			<aui:validator name="digits"/>
+		</aui:input>
+		<aui:select label="color-scheme" name="settings--social-comments-facebook-color-scheme--">
+			<aui:option label="light" selected='<%= fbColorScheme.equals("light") %>' value="light" />
+			<aui:option label="dark" selected='<%= fbColorScheme.equals("dark") %>' value="dark" />
+		</aui:select>
+	</aui:fieldset>
 	<aui:button-row>
 		<aui:button label="save" type="submit" />
 	</aui:button-row>

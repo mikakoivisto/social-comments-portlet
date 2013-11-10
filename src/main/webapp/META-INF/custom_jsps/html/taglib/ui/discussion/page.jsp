@@ -57,6 +57,11 @@ boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProper
 boolean gplusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-gplus-enabled"));
 int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-gplus-width", "642"));
 
+boolean fbEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-facebook-enabled"));
+String fbColorScheme = GetterUtil.getString(typeSettingsProperties.getProperty("social-comments-facebook-color-scheme"), "light");
+int fbNumPosts = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-numPosts", "10"));
+int fbWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-width", "550"));
+
 String articleId = className.concat(String.valueOf(classPK));
 String articleUrl = redirect;
 
@@ -162,6 +167,31 @@ String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
 
 				firstScript.parentNode.insertBefore(script, firstScript);
 			})();
+		</script>
+	</liferay-util:html-bottom>
+</c:if>
+
+<c:if test="<%= fbEnabled %>">
+	<div class="fb-comments" 
+		data-href="<%= articleUrl %>"
+		data-colorscheme="<%= fbColorScheme %>"
+		data-numposts="<%= fbNumPosts %>"
+		data-width="<%= fbWidth %>">
+	</div>
+
+	<liferay-util:html-bottom outputKey="taglib_ui_social_bookmark_facebook">
+		<div id="fb-root"></div>
+
+		<script>
+			// Load the SDK Asynchronously
+
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s); js.id = id;
+				js.src = "//connect.facebook.net/<%= locale.getLanguage() %>_<%= locale.getCountry() %>/all.js#xfbml=1";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
 		</script>
 	</liferay-util:html-bottom>
 </c:if>
