@@ -6,7 +6,7 @@
 	<artifactId>social-comments-portlet</artifactId>
 	<packaging>war</packaging>
 	<name>social-comments-portlet Portlet</name>
-	<version>1.2.0.1-SNAPSHOT</version>
+	<version>1.2.0.1</version>
 
 	<developers>
 		<developer>
@@ -26,7 +26,8 @@
 	<scm>
 		<connection>scm:git:git@github.com:mikakoivisto/social-comments-portlet.git</connection>
 		<url>https://github.com/mikakoivisto/social-comments-portlet</url>
-	</scm>
+	  <tag>v1.2.0.1</tag>
+  </scm>
 
 	<distributionManagement>
 		<repository>
