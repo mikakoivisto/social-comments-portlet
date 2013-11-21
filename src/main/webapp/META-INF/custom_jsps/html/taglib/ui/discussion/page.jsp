@@ -74,6 +74,10 @@ else if (className.equals(DLFileEntry.class.getName())) {
 else if (className.equals(Layout.class.getName())) {
 	Layout discussionLayout = LayoutLocalServiceUtil.getLayout(classPK);
 	articleUrl = GetterUtil.getString(PortalUtil.getLayoutFriendlyURL(discussionLayout, themeDisplay));
+
+	if (articleUrl.indexOf("://") == -1) {
+		articleUrl = PortalUtil.getPortalURL(request).concat(articleUrl);
+	}
 }
 else if (className.equals(WikiPage.class.getName())) {
 	articleUrl = PortalUtil.getPortalURL(request).concat("/c/wiki/find_page?pageResourcePrimKey=").concat(String.valueOf(classPK));

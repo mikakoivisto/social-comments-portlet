@@ -21,6 +21,7 @@ import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.PropertiesParamUtil;
 import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.model.Group;
+import com.liferay.portal.service.GroupLocalServiceUtil;
 import com.liferay.portal.service.GroupServiceUtil;
 import com.liferay.portal.service.ServiceContext;
 import com.liferay.portal.service.ServiceContextFactory;
@@ -41,13 +42,13 @@ public class SocialCommentsPortlet extends MVCPortlet {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws IOException, PortletException {
 
-
 		try {
 			ServiceContext serviceContext =
 				ServiceContextFactory.getInstance(actionRequest);
 
+			long scopeGroupId = serviceContext.getScopeGroupId();
 
-			Group scopeGroup = serviceContext.getScopeGroup();
+			Group scopeGroup = GroupLocalServiceUtil.getGroup(scopeGroupId);
 
 			if (scopeGroup.isStagingGroup()) {
 				scopeGroup = scopeGroup.getLiveGroup();
