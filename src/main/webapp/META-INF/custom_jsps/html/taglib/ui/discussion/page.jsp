@@ -60,7 +60,7 @@ int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("socia
 boolean fbEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-facebook-enabled"));
 String fbColorScheme = GetterUtil.getString(typeSettingsProperties.getProperty("social-comments-facebook-color-scheme"), "light");
 int fbNumPosts = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-numPosts", "10"));
-int fbWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-width", "550"));
+String fbWidth = typeSettingsProperties.getProperty("social-comments-facebook-width", "550");
 
 String articleId = className.concat(String.valueOf(classPK));
 String articleUrl = redirect;

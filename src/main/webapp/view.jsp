@@ -43,7 +43,7 @@ int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("socia
 boolean fbEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-facebook-enabled"));
 String fbColorScheme = GetterUtil.getString(typeSettingsProperties.getProperty("social-comments-facebook-color-scheme"), "light");
 int fbNumPosts = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-numPosts", "10"));
-int fbWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-facebook-width", "550"));
+String fbWidth = typeSettingsProperties.getProperty("social-comments-facebook-width", "550");
 
 %>
 <portlet:actionURL name="updateConfiguration" var="updateConfigurationURL" />
@@ -77,9 +77,7 @@ int fbWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-c
 
 	<aui:fieldset label="facebook">
 		<aui:input label="enabled" name="settings--social-comments-facebook-enabled--" type="checkbox" value="<%= String.valueOf(fbEnabled) %>"/>
-		<aui:input label="width" name="settings--social-comments-facebook-width--" value="<%= fbWidth %>">
-			<aui:validator name="digits"/>
-		</aui:input>
+		<aui:input label="width" name="settings--social-comments-facebook-width--" value="<%= fbWidth %>"/>
 		<aui:input label="number-of-posts" name="settings--social-comments-facebook-numPosts--" value="<%= fbNumPosts %>">
 			<aui:validator name="digits"/>
 		</aui:input>
