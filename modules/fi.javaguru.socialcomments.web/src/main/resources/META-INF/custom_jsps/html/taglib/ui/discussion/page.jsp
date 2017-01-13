@@ -46,10 +46,6 @@ boolean liferayEnabled = GetterUtil.getBoolean(typeSettingsProperties.getPropert
 boolean disqusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-disqus-enabled"));
 String disqusShortName = typeSettingsProperties.getProperty("social-comments-disqus-short-name");
 
-String livefyreSiteId = typeSettingsProperties.getProperty("social-comments-livefyre-site-id");
-String livefyreSiteSecret = typeSettingsProperties.getProperty("social-comments-livefyre-site-secret");
-boolean livefyreEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-livefyre-enabled"));
-
 boolean gplusEnabled = GetterUtil.getBoolean(typeSettingsProperties.getProperty("social-comments-gplus-enabled"));
 int gplusWidth = GetterUtil.getInteger(typeSettingsProperties.getProperty("social-comments-gplus-width", "642"));
 
@@ -111,38 +107,6 @@ else if (className.equals("com.liferay.wiki.model.WikiPage")) {
 		</script>
 	</liferay-util:html-bottom>
 </c:if>
-<c:if test="<%= livefyreEnabled %>">
-<%
-StringBundler sb = new StringBundler(4);
-
-sb.append(articleId);
-sb.append(StringPool.COMMA);
-sb.append(articleUrl);
-sb.append(StringPool.COMMA);
-sb.append(subject);
-sb.append(StringPool.COMMA);
-sb.append(livefyreSiteSecret);
-
-String livefyreSig = DigesterUtil.digestHex("MD5", sb.toString());
-%>
-	<div id="livefyre"></div>
-
-	<liferay-util:html-bottom outputKey="taglib_ui_discussion_livefyre">
-		<script type='text/javascript' src='http://zor.livefyre.com/wjs/v1.0/javascripts/livefyre_init.js'></script>
-		<script type='text/javascript'>
-			LF({
-				site_id: <%= livefyreSiteId %>,
-				article_id: "<%= articleId %>",
-				conv_meta: {
-					article_url: "<%= HtmlUtil.escapeJS(articleUrl) %>",
-					title: "<%= HtmlUtil.escapeJS(subject) %>",
-					sig: "<%= livefyreSig %>"
-				}
-			});
-		</script>
-	</liferay-util:html-bottom>
-</c:if>
-
 <c:if test="<%= gplusEnabled %>">
 	<div class="g-comments"
 		data-href="<%= articleUrl %>"
