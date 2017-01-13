@@ -1,0 +1,11 @@
+dependencies {
+	compile 'com.liferay:com.liferay.application.list.api:1.0.0'
+	compile 'com.liferay.portal:com.liferay.portal.kernel:2.0.0'
+	compile 'com.liferay.portal:com.liferay.portal.impl:2.0.0'
+	compile 'com.liferay.portal:com.liferay.util.taglib:2.0.0'
+	compile 'org.osgi:org.osgi.compendium:5.0.0'
+	compile 'org.osgi:org.osgi.core:6.0.0'
+	compile 'javax.portlet:portlet-api:2.0'
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+	compile 'jstl:jstl:1.2'
+}
